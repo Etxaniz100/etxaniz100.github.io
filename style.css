@@ -1,37 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+body 
+{
+    overflow: hidden;
+    background: #222;
+}
 
-    body 
-    {
-        overflow: hidden;
-        background: #222;
-    }
+canvas 
+{
+    display: block;
+    background: #111;
+}
 
-    canvas 
-    {
-        display: block;
-        background: #111;
-    }
+.world-card 
+{
+    position: absolute;
+    width: 300px;
+    padding: 20px;
 
-    .world-card 
-    {
-        position: absolute;
-        width: 300px;
-        padding: 20px;
+    background: rgba(20, 20, 30, 0.562);
+    color: white;
 
-        background: rgba(20, 20, 30, 0.562);
-        color: white;
+    border: 2px solid white;
+    border-radius: 15px;
 
-        border: 2px solid white;
-        border-radius: 15px;
+    font-family: Arial;
 
-        font-family: Arial;
+    pointer-events: none;
 
-        pointer-events: none;
+    transform: translate(-50%, -50%);
+}
 
-        transform: translate(-50%, -50%);
-    }
+.social-links {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    display: flex;
+    gap: 20px;
+
+    z-index: 10;
+}
+
+.social {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(231, 217, 217, 0.623);
+
+    backdrop-filter: blur(5px);
+
+    transition: 
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.social img {
+    width: 24px;
+    height: 24px;
+}
+
+.social:hover {
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.89);
+}

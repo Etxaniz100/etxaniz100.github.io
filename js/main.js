@@ -1,5 +1,5 @@
 import { keys } from "./utils/input.js";
-import { drawRectangle, drawPlayer, drawSphere, drawText, drawTriangle } from "./render/renderer.js";
+import { render} from "./render/renderer.js";
 import { player } from "./entities/player.js";
 import { camera } from "./entities/camera.js";
 import { ctx, canvas } from "./render/canvas.js";
@@ -75,28 +75,7 @@ function update(dt)
     console.log(camera.position.y);
 }
 
-// --------------------
-// Render
-// --------------------
 
-
-
-
-function render() {
-
-    // Clear screen
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    drawSphere(0, 0, 50, "grey");
-    drawSphere(200, 150, 5, "white");
-    drawSphere(500, 900, 5, "white");
-    drawSphere(800, 700, 5, "white");
-    drawSphere(700, 200, 5, "white");
-    drawSphere(120, 100, 5, "white");
-
-    player.render()
-
-}
 
 // --------------------
 // Game Loop
@@ -141,7 +120,35 @@ const cards =
         ),
     ];
 
+
+function saveGame() {
+    localStorage.setItem("save", JSON.stringify({
+        x: player.x,
+        y: player.y,
+        rotation: player.rotation,
+        currentMode: player.currentMode
+    }));
+}
+
+function loadGame() {
+    const data = localStorage.getItem("save");
+
+    if (!data) return;
+
+    const save = JSON.parse(data);
+
+    player.x = save.x;
+    player.y = save.y;
+    player.rotation = save.rotation;
+    player.currentMode = save.currentMode;
+}
+
+window.addEventListener("beforeunload", () => {
+    saveGame();
+});
+
 let lastTime = 0;
+
 
 function gameLoop(timestamp) {
 
@@ -156,4 +163,7 @@ function gameLoop(timestamp) {
     requestAnimationFrame(gameLoop);
 }
 
+loadGame()
+camera.position.x = player.x;
+camera.position.y = player.y;
 requestAnimationFrame(gameLoop);
