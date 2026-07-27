@@ -1,128 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Template</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game Template</title>
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
 
-    body {
-        overflow: hidden;
-        background: #222;
-    }
+        <canvas id="game"></canvas>
 
-    canvas {
-        display: block;
-        background: #111;
-    }
-</style>
-</head>
-<body>
+        <!-- Load the JavaScript file -->
+        <script src="game.js"></script>
 
-<canvas id="game"></canvas>
-
-<script>
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-window.addEventListener("resize", resize);
-resize();
-
-// --------------------
-// Input
-// --------------------
-
-const keys = {};
-
-window.addEventListener("keydown", e => {
-    keys[e.key] = true;
-});
-
-window.addEventListener("keyup", e => {
-    keys[e.key] = false;
-});
-
-// --------------------
-// Game State
-// --------------------
-
-const player = {
-    x: 100,
-    y: 100,
-    width: 50,
-    height: 50,
-    speed: 300 // pixels per second
-};
-
-// --------------------
-// Update
-// --------------------
-
-function update(dt) {
-
-    if (keys["ArrowLeft"])
-        player.x -= player.speed * dt;
-
-    if (keys["ArrowRight"])
-        player.x += player.speed * dt;
-
-    if (keys["ArrowUp"])
-        player.y -= player.speed * dt;
-
-    if (keys["ArrowDown"])
-        player.y += player.speed * dt;
-}
-
-// --------------------
-// Render
-// --------------------
-
-function render() {
-
-    // Clear screen
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw box
-    ctx.fillStyle = "deepskyblue";
-    ctx.fillRect(
-        player.x,
-        player.y,
-        player.width,
-        player.height
-    );
-}
-
-// --------------------
-// Game Loop
-// --------------------
-
-let lastTime = 0;
-
-function gameLoop(timestamp) {
-
-    const dt = (timestamp - lastTime) / 1000;
-    lastTime = timestamp;
-
-    update(dt);
-    render();
-
-    requestAnimationFrame(gameLoop);
-}
-
-requestAnimationFrame(gameLoop);
-
-</script>
-
-</body>
+    </body>
 </html>
