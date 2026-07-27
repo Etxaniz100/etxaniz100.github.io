@@ -1,3 +1,5 @@
+import { keys } from "./utils/input.js";
+import { player } from "./entities/player.js";
 
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
@@ -63,7 +65,7 @@ class WorldCard {
         const screen = camera.getPosition(this.x, this.y);
 
         this.element.style.transform =
-            `translate(${screen.x}px, ${screen.y}px)`;
+            `translate(${screen.x}px, ${screen.y - 1000}px)`;
     }
 }
 
@@ -75,39 +77,12 @@ function interpTo(current, target, speed, dt)
 {
     return current + (target - current) * speed * dt;
 }
-// --------------------
-// Input
-// --------------------
-
-const keys = {};
-
-window.addEventListener("keydown", e => {
-    keys[e.key] = true;
-});
-
-window.addEventListener("keyup", e => {
-    keys[e.key] = false;
-});
 
 // --------------------
 // Game State
 // --------------------
 
-const player = 
-{
-    x: 100,
-    y: 100,
-    width: 50,
-    height: 50,
-    acceleration: 1000, // thrust acceleration
-    speed: {x:0, y:0}, // pixels per second
-    drag: 0.98,
-    controlledDrag: 0.9,
-    rotation: 0, // radians
-    angularAcceleration: 20, // radians
-    angularSpeed: 0, // radians
-    angularDrag: 0.95,
-};
+
 
 // --------------------
 // Update
@@ -115,46 +90,12 @@ const player =
 
 function update(dt) 
 {
-    let currentAcceleration = 0
-    let currentAngularAcceleration = 0
-
-    if (keys["ArrowLeft"] || keys["a"])
-    {
-        currentAngularAcceleration -= player.angularAcceleration;
-    }
-
-    if (keys["ArrowRight"] || keys["d"])
-    {
-         currentAngularAcceleration += player.angularAcceleration;
-    }
-
-    player.angularSpeed += currentAngularAcceleration * dt;
-    player.angularSpeed = player.angularSpeed * player.angularDrag;
-    player.rotation += player.angularSpeed * dt;
-
-    if (keys["ArrowUp"] || keys["w"]) 
-    {
-        currentAcceleration = player.acceleration;
-    }
-
-    player.speed.x += Math.cos(player.rotation) * currentAcceleration * dt;
-    player.speed.y += Math.sin(player.rotation) * currentAcceleration * dt;
-
-    player.speed.x = player.speed.x * player.drag;
-    player.speed.y = player.speed.y * player.drag;
-
-    if (keys["ArrowDown"] || keys["s"]) 
-    {
-        player.speed.x = player.speed.x * player.controlledDrag;
-        player.speed.y = player.speed.y * player.controlledDrag;
-    }
-
-    player.x += player.speed.x * dt;
-    player.y += player.speed.y * dt;
-
+   player.update(dt)
 
     camera.position.x = interpTo(camera.position.x, player.x, camera.interpolationSpeed, dt);
     camera.position.y = interpTo(camera.position.y, player.y, camera.interpolationSpeed, dt);
+
+    console.log(camera.position.y);
 }
 
 // --------------------
@@ -273,7 +214,7 @@ function render() {
     // Clear screen
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    drawSphere(100, 100, 5, "white");
+    drawSphere(0, 0, 50, "grey");
     drawSphere(200, 150, 5, "white");
     drawSphere(500, 900, 5, "white");
     drawSphere(800, 700, 5, "white");
@@ -282,8 +223,6 @@ function render() {
 
     //drawRectangle(player.x, player.y, player.width, player.height, 2, "red")
     drawPlayer(player.x, player.y, player.rotation, "red")
-    
-    drawText(500, 500, "Eneko Etxaniz\nGame Programmer\nComputer Engineer", "White", "30px Arial")
 
 }
 
@@ -294,8 +233,8 @@ function render() {
 const cards = 
     [
         new WorldCard(
-            500,
-            500,
+            0,
+            0,
             `
             <h2>Eneko Etxaniz</h2>
             <p>Game Programmer and Computer Engineer</p>
