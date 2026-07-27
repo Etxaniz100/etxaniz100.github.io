@@ -1,35 +1,12 @@
 import { keys } from "./utils/input.js";
+import { drawRectangle, drawPlayer, drawSphere, drawText, drawTriangle } from "./render/renderer.js";
 import { player } from "./entities/player.js";
-
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-window.addEventListener("resize", resize);
-resize();
+import { camera } from "./entities/camera.js";
+import { ctx, canvas } from "./render/canvas.js";
 
 
-// --------------------
-// Camera
-// --------------------
 
-const camera = 
-{
-    position: {x:0, y:0},
-    interpolationSpeed: 3,
 
-    getPosition(x, y) 
-    {
-        return {
-            x: x - this.position.x + canvas.width / 2,
-            y: y - this.position.y + canvas.height / 2
-        };
-    }
-}
 
 // --------------------
 // Information Cards
@@ -102,111 +79,7 @@ function update(dt)
 // Render
 // --------------------
 
-function drawRectangle(x, y, width, height, rotation, color)
-{
-    ({ x, y } = camera.getPosition(x, y));
 
-    if(rotation != 0)
-    {
-        ctx.save();
-
-        // Move origin to the center
-        ctx.translate(
-            x + width / 2,
-            y + height / 2
-        );
-
-        // Rotate around the new origin
-        ctx.rotate(rotation);
-
-        // Draw centered on the origin
-        ctx.fillStyle = color;
-        ctx.fillRect(
-            -width / 2,
-            -height / 2,
-            width,
-            height
-        );
-
-        ctx.restore();
-    }
-    else
-    {
-        ctx.fillStyle = color;
-        ctx.fillRect(x, y, width, height);
-    }
-}
-
-function drawTriangle(x, y, width, height, rotation, color)
-{
-    ({ x, y } = camera.getPosition(x, y));
-
-    ctx.save();
-
-    ctx.translate(x, y);
-    ctx.rotate(rotation);
-
-    ctx.beginPath();
-    ctx.moveTo(25, 0);      // Tip
-    ctx.lineTo(-15, -15);   // Back left
-    ctx.lineTo(-15, 15);    // Back right
-    ctx.closePath();
-
-    ctx.fillStyle = color;
-    ctx.fill();
-
-    ctx.restore();  
-}
-
-function drawPlayer(x, y, rotation, color)
-{
-    ({ x, y } = camera.getPosition(x, y));
-
-    ctx.save();
-
-    ctx.translate(x, y);
-    ctx.rotate(rotation);
-
-    ctx.beginPath();
-    ctx.moveTo(25, 0);      // Tip
-    ctx.lineTo(-15, -15);   // Back left
-    ctx.lineTo(-10, 0);   // Back left
-    ctx.lineTo(-15, 15);    // Back right
-    ctx.closePath();
-
-    ctx.fillStyle = color;
-    ctx.fill();
-
-    ctx.restore();  
-}
-
-function drawSphere(x, y, radius, color)
-{
-    ({ x, y } = camera.getPosition(x, y));
-
-    ctx.beginPath();
-
-    ctx.arc(
-        x, 
-        y, 
-        radius,  
-        0,
-        Math.PI * 2
-    );
-
-    ctx.fillStyle = color;
-    ctx.fill();
-}
-
-function drawText(x, y, text, color, font)
-{
-    ({ x, y } = camera.getPosition(x, y));
-
-    ctx.fillStyle = color;
-    ctx.font = font;
-    
-    ctx.fillText(text, x, y);
-}
 
 
 function render() {
@@ -221,8 +94,7 @@ function render() {
     drawSphere(700, 200, 5, "white");
     drawSphere(120, 100, 5, "white");
 
-    //drawRectangle(player.x, player.y, player.width, player.height, 2, "red")
-    drawPlayer(player.x, player.y, player.rotation, "red")
+    player.render()
 
 }
 

@@ -1,4 +1,5 @@
 import { keys } from "../utils/input.js";
+import { drawRectangle, drawPlayer, drawSphere, drawText, drawTriangle } from "../render/renderer.js";
 
 export const player = 
 {
@@ -22,35 +23,40 @@ export const player =
 
         if (keys["ArrowLeft"] || keys["a"])
         {
-            currentAngularAcceleration -= player.angularAcceleration;
+            currentAngularAcceleration -= this.angularAcceleration;
         }
         else if (keys["ArrowRight"] || keys["d"])
         {
-            currentAngularAcceleration += player.angularAcceleration;
+            currentAngularAcceleration += this.angularAcceleration;
         }
 
-        player.angularSpeed += currentAngularAcceleration * dt;
-        player.angularSpeed = player.angularSpeed * player.angularDrag;
-        player.rotation += player.angularSpeed * dt;
+        this.angularSpeed += currentAngularAcceleration * dt;
+        this.angularSpeed = this.angularSpeed * this.angularDrag;
+        this.rotation += this.angularSpeed * dt;
 
         if (keys["ArrowUp"] || keys["w"]) 
         {
-            currentAcceleration = player.acceleration;
+            currentAcceleration = this.acceleration;
         }
 
-        player.speed.x += Math.cos(player.rotation) * currentAcceleration * dt;
-        player.speed.y += Math.sin(player.rotation) * currentAcceleration * dt;
+        this.speed.x += Math.cos(this.rotation) * currentAcceleration * dt;
+        this.speed.y += Math.sin(this.rotation) * currentAcceleration * dt;
 
-        player.speed.x = player.speed.x * player.drag;
-        player.speed.y = player.speed.y * player.drag;
+        this.speed.x = this.speed.x * this.drag;
+        this.speed.y = this.speed.y * this.drag;
 
         if (keys["ArrowDown"] || keys["s"]) 
         {
-            player.speed.x = player.speed.x * player.controlledDrag;
-            player.speed.y = player.speed.y * player.controlledDrag;
+            this.speed.x = this.speed.x * this.controlledDrag;
+            this.speed.y = this.speed.y * this.controlledDrag;
         }
 
-        player.x += player.speed.x * dt;
-        player.y += player.speed.y * dt;
+        this.x += this.speed.x * dt;
+        this.y += this.speed.y * dt;
+    },
+
+    render()
+    {
+        drawPlayer(player.x, player.y, player.rotation, "red");
     }
 };
