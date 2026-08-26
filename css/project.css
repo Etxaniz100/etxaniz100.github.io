@@ -1,0 +1,206 @@
+/* ========================================
+   PROJECT HERO
+======================================== */
+
+.project-hero {
+    position: relative;
+
+    min-height: 75vh;
+
+    display: flex;
+    align-items: flex-end;
+
+    padding: 8rem 10% 6rem;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    color: var(--white);
+
+    overflow: hidden;
+}
+
+.project-hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(45, 36, 48, 0.9),
+            rgba(45, 36, 48, 0.2)
+        );
+}
+
+.project-hero-content {
+    position: relative;
+    z-index: 1;
+
+    max-width: 1000px;
+}
+
+.project-category {
+    margin-bottom: 0.5rem;
+
+    color: var(--orange);
+
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    letter-spacing: 0.15em;
+}
+
+.project-hero h1 {
+    margin-bottom: 0.5rem;
+
+    font-size: clamp(4rem, 10vw, 8rem);
+
+    line-height: 0.9;
+}
+
+.project-hero h2 {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+
+    font-weight: normal;
+
+    color: var(--light-purple);
+}
+
+
+/* ========================================
+   PROJECT SECTIONS
+======================================== */
+
+.project-section {
+    padding: 7rem 10%;
+}
+
+.project-container {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   INTRODUCTION
+======================================== */
+
+.project-introduction {
+    max-width: 850px;
+}
+
+.project-text {
+    font-size: 1.1rem;
+}
+
+.project-text p {
+    margin-bottom: 1.5rem;
+}
+
+.project-text a {
+    color: var(--purple);
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+.project-text a:hover {
+    color: var(--coral);
+}
+
+
+/* ========================================
+   PROJECT BUTTONS
+======================================== */
+
+.project-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.5rem;
+
+    margin: 2rem 0;
+}
+
+
+/* ========================================
+   PROJECT SPECIFICATION
+======================================== */
+
+.project-specification {
+    background: var(--background-contrast);
+}
+
+.specification-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: var(--light-base);
+}
+
+.specification-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4rem;
+
+    padding: 1.5rem;
+
+    background: var(--background);
+}
+
+.specification-label {
+    font-size: 0.8rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.1em;
+
+    color: var(--light-base);
+
+    font-weight: bold;
+}
+
+.specification-value {
+    font-size: 1.1rem;
+
+    color: var(--base);
+
+    font-weight: bold;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .project-hero {
+        min-height: 65vh;
+
+        padding: 7rem 6% 4rem;
+    }
+
+    .project-section {
+        padding: 5rem 6%;
+    }
+
+    .specification-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
