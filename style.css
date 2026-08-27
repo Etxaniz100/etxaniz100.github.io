@@ -233,7 +233,8 @@ section {
     gap: 2rem;
 }
 
-.project-card {
+.project-card,
+.project-card:visited {
     display: block;
 
     background: var(--white);
@@ -246,7 +247,7 @@ section {
         0 10px 30px rgba(164, 120, 184, 0.15);
 
     text-decoration: none;
-    color: inherit;
+    color: var(--text);
 
     transition:
         transform 0.25s ease,
@@ -258,6 +259,9 @@ section {
 
     box-shadow:
         0 20px 40px rgba(164, 120, 184, 0.25);
+
+    text-decoration: none;
+    color: var(--text);
 }
 
 
@@ -281,10 +285,7 @@ section {
 /* Project content */
 
 .project-content {
-    display: block;
     padding: 1.5rem;
-    text-decoration: none;
-    color: var(--text);
 }
 
 .project-content h3 {
@@ -486,12 +487,6 @@ footer {
     border-radius: 20px;
 
     transition: transform 0.2s ease;
-}
-
-.skill-group h3 {
-    color: var(--base);
-
-    margin-bottom: 1rem;
 }
 
 .skill-group h3 {
