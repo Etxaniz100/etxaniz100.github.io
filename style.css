@@ -39,7 +39,7 @@ body {
 
 a {
     color: var(--highlight);
-
+    text-decoration: none; /* To remove the underline */
     transition: transform 0.2s ease;
 }
 
@@ -276,7 +276,10 @@ section {
 /* Project content */
 
 .project-content {
+    display: block;
     padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text);
 }
 
 .project-content h3 {
