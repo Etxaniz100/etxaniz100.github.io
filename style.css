@@ -234,6 +234,8 @@ section {
 }
 
 .project-card {
+    display: block;
+
     background: var(--white);
 
     border-radius: 20px;
@@ -242,6 +244,9 @@ section {
 
     box-shadow:
         0 10px 30px rgba(164, 120, 184, 0.15);
+
+    text-decoration: none;
+    color: inherit;
 
     transition:
         transform 0.25s ease,
