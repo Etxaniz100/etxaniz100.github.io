@@ -5,7 +5,7 @@
 .project-hero {
     position: relative;
 
-    min-height: 75vh;
+    min-height: 65vh;
 
     display: flex;
     align-items: flex-end;
@@ -73,16 +73,14 @@
 ======================================== */
 
 .project-section {
-    padding: 7rem 10%;
+    padding: 4rem 10%;
 }
 
 .project-container {
     width: 100%;
     max-width: 1000px;
-
     margin: 0 auto;
 }
-
 
 /* ========================================
    INTRODUCTION
@@ -109,48 +107,64 @@
 
     flex-wrap: wrap;
 
-    gap: 0.5rem;
+    gap: 1.0rem;
 
     margin: 2rem 0;
 }
-
 
 /* ========================================
    PROJECT SPECIFICATION
 ======================================== */
 
 .project-specification {
-    background: var(--background-contrast);
+    background: var(--background);
 }
 
-.specification-grid {
+.specification-card {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
-    gap: 1px;
+    background: var(--background-contrast);
 
-    overflow: hidden;
+    border: 1px solid var(--light-base);
 
     border-radius: 20px;
 
-    background: var(--light-base);
+    overflow: hidden;
 }
 
 .specification-item {
     display: flex;
-
     flex-direction: column;
 
     gap: 0.4rem;
 
-    padding: 1.5rem;
+    padding: 1.75rem;
 
-    background: var(--background);
+    background: var(--background-contrast);
+
+    border-right: 1px solid var(--light-base);
+    border-bottom: 1px solid var(--light-base);
 }
 
+
+/* Remove borders from the right side */
+
+.specification-item:nth-child(3n) {
+    border-right: none;
+}
+
+
+/* Remove borders from the bottom row */
+
+.specification-item:nth-child(n + 4) {
+    border-bottom: none;
+}
+
+
 .specification-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 
     text-transform: uppercase;
 
@@ -171,6 +185,22 @@
 
 
 /* ========================================
+   SPECIFICATION HOVER
+======================================== */
+
+.specification-item {
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.specification-item:hover {
+    background: var(--background);
+
+    transform: translateY(-2px);
+}
+
+/* ========================================
    MOBILE
 ======================================== */
 
@@ -178,16 +208,144 @@
 
     .project-hero {
         min-height: 65vh;
-
         padding: 7rem 6% 4rem;
     }
 
     .project-section {
-        padding: 5rem 6%;
+        padding: 3.5rem 6%;
     }
 
-    .specification-grid {
+    .specification-card {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .specification-item:nth-child(3n) {
+        border-right: 1px solid var(--light-base);
+    }
+
+    .specification-item:nth-child(2n) {
+        border-right: none;
+    }
+
+    .technical-card {
         grid-template-columns: 1fr;
+    }
+
+    .technical-item {
+        border-right: none;
+        border-bottom: 1px solid var(--light-base);
+    }
+
+    .technical-item:last-child {
+        border-bottom: none;
+    }
+
+}
+
+/* ========================================
+   TECHNICAL DETAILS
+======================================== */
+
+.technical-details p {
+    max-width: 850px;
+
+    font-size: 1.1rem;
+
+    margin-bottom: 1.5rem;
+}
+
+
+.technical-card {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    max-width: 850px;
+
+    margin: 2rem 0 2.5rem;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: var(--background-contrast);
+
+    border: 1px solid var(--light-base);
+}
+
+
+.technical-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4rem;
+
+    padding: 1.5rem;
+
+    border-right: 1px solid var(--light-base);
+    border-bottom: 1px solid var(--light-base);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.technical-item:hover {
+    background: var(--background);
+
+    transform: translateY(-2px);
+}
+
+
+/* Remove right border from every second item */
+
+.technical-item:nth-child(2n) {
+    border-right: none;
+}
+
+
+/* Remove bottom border from last row */
+
+.technical-item:nth-child(n + 3) {
+    border-bottom: none;
+}
+
+
+.technical-label {
+    color: var(--base);
+
+    font-size: 1rem;
+
+    font-weight: bold;
+}
+
+
+.technical-description {
+    color: var(--light-base);
+
+    font-size: 0.95rem;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .technical-card {
+        grid-template-columns: 1fr;
+    }
+
+    .technical-item {
+        border-right: none;
+        border-bottom: 1px solid var(--light-base);
+    }
+
+    .technical-item:last-child {
+        border-bottom: none;
     }
 
 }
