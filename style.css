@@ -37,6 +37,19 @@ body {
     line-height: 1.6;
 }
 
+a {
+    color: var(--highlight);
+
+    transition:
+        transform 0.2s ease,
+}
+
+.a:hover {
+    color: var(--highlight);
+
+    transform:
+        translateX(-2px)
+}
 
 /* ========================================
    NAVIGATION
