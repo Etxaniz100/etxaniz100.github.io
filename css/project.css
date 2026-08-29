@@ -349,3 +349,139 @@
     }
 
 }
+
+/* ========================================
+   ABOUT THE GAME
+======================================== */
+
+.project-about {
+    padding-top: 5rem;
+}
+
+
+/* ========================================
+   GAMEPLAY VIDEO
+======================================== */
+
+.project-video {
+    position: relative;
+
+    width: 100%;
+
+    margin: 2rem 0 3rem;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: var(--background-contrast);
+
+    border: 1px solid var(--light-base);
+
+    aspect-ratio: 16 / 9;
+}
+
+.project-video iframe {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+}
+
+
+/* ========================================
+   GAME DESCRIPTION
+======================================== */
+
+.project-text {
+    max-width: 850px;
+
+    font-size: 1.1rem;
+
+    line-height: 1.7;
+}
+
+.project-text p {
+    margin-bottom: 1.5rem;
+}
+
+
+/* ========================================
+   GAMEPLAY GALLERY
+======================================== */
+
+.project-gallery {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 1rem;
+
+    margin-top: 3rem;
+}
+
+.project-gallery figure {
+    margin: 0;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: var(--background-contrast);
+
+    border: 1px solid var(--light-base);
+}
+
+.project-gallery .gallery-main {
+    grid-column: 1 / -1;
+}
+
+.project-gallery img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    transition: transform 0.4s ease;
+}
+
+.project-gallery figure:hover img {
+    transform: scale(1.03);
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .project-about {
+        padding-top: 3.5rem;
+    }
+
+    .project-video {
+        margin: 1.5rem 0 2.5rem;
+
+        border-radius: 14px;
+    }
+
+    .project-text {
+        font-size: 1rem;
+    }
+
+    .project-gallery {
+        grid-template-columns: 1fr;
+
+        margin-top: 2rem;
+    }
+
+    .project-gallery .gallery-main {
+        grid-column: auto;
+    }
+
+}

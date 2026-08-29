@@ -586,3 +586,272 @@ footer {
     }
 
 }
+
+/* ========================================
+   PROJECT MEDIA CAROUSEL
+======================================== */
+
+.project-carousel {
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 3rem;
+}
+
+
+/* ========================================
+   VIEWPORT
+======================================== */
+
+.carousel-viewport {
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: var(--background-contrast);
+
+    border: 1px solid var(--light-base);
+}
+
+
+/* ========================================
+   SLIDE TRACK
+======================================== */
+
+.carousel-track {
+    display: flex;
+
+    width: 100%;
+
+    transition: transform 0.45s ease;
+}
+
+
+/* ========================================
+   SLIDES
+======================================== */
+
+.carousel-slide {
+    flex: 0 0 100%;
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+/* ========================================
+   MEDIA
+======================================== */
+
+.carousel-media {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    background: var(--background);
+}
+
+.carousel-media img,
+.carousel-media iframe {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+}
+
+.carousel-media img {
+    object-fit: cover;
+}
+
+
+/* ========================================
+   CAPTION
+======================================== */
+
+.carousel-caption {
+    margin: 0;
+
+    padding: 1rem 1.25rem 1.25rem;
+
+    color: var(--light-base);
+
+    font-size: 0.95rem;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   PREVIOUS / NEXT BUTTONS
+======================================== */
+
+.carousel-button {
+    position: absolute;
+
+    top: calc((100% - 4rem) / 2);
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    padding: 0;
+
+    border: 1px solid var(--light-base);
+
+    border-radius: 50%;
+
+    background: var(--background-contrast);
+
+    color: var(--base);
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.project-carousel:hover .carousel-button {
+    opacity: 1;
+}
+
+.carousel-button:hover {
+    background: var(--background);
+
+    transform: scale(1.08);
+}
+
+.carousel-button-prev {
+    left: 1rem;
+}
+
+.carousel-button-next {
+    right: 1rem;
+}
+
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.carousel-navigation {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 1rem;
+
+    margin-top: 1.25rem;
+}
+
+
+/* ========================================
+   DOTS
+======================================== */
+
+.carousel-dots {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--light-base);
+
+    opacity: 0.5;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.carousel-dot:hover {
+    opacity: 0.8;
+
+    transform: scale(1.2);
+}
+
+.carousel-dot.active {
+    opacity: 1;
+
+    transform: scale(1.35);
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .project-carousel {
+        margin-top: 2rem;
+    }
+
+    .carousel-viewport {
+        border-radius: 14px;
+    }
+
+    .carousel-caption {
+        padding: 0.9rem 1rem 1rem;
+
+        font-size: 0.9rem;
+    }
+
+    .carousel-button {
+        width: 2.5rem;
+        height: 2.5rem;
+
+        top: calc((100% - 3.5rem) / 2);
+
+        opacity: 1;
+
+        font-size: 1rem;
+    }
+
+    .carousel-button-prev {
+        left: 0.6rem;
+    }
+
+    .carousel-button-next {
+        right: 0.6rem;
+    }
+
+    .carousel-navigation {
+        margin-top: 1rem;
+    }
+
+}
