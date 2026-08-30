@@ -71,7 +71,7 @@
                 <div class="project-text">
 
                     <p>
-                        Hellstrings is a rithm game based on games like Guitar Hero, with a musical focus in classical music.
+                        Hellstrings is a rhythm game based on games like Guitar Hero, with a musical focus in classical music.
 
                         This game was created for the <a href="https://itch.io/jam/1-bit-jam-7" target="_blank" rel="noopener noreferrer" > 1 Bit Jam (7th edition)</a> 
                         so it had the limit of only using two colors, hence the black and White palette. The Theme was "You are the enemy" and after some philosophical debate and some ideas changing through the days we ended up playing as a demon guitarrist who wants to transform angels into more demons, the better you perform, more people are converted. 
@@ -351,51 +351,22 @@
     <div class="project-container">
 
         <h2 class="section-title">
-            Technical Details
+            My Contributions
         </h2>
 
-        <p>
-            When you open the game, you can choose between two songs:
-            <em>Moonlight Sonata</em> and <em>Winter</em> from
-            Vivaldi's <em>Four Seasons</em>.
-        </p>
+        <h3>
+            Designed and implemented the data architecture for managing song information and its reproduction.
+        </h3>
 
         <p>
             Each song has its own JSON file containing all the
-            information required to play it:
+            information required to play it: Name, tempo, and verses.
         </p>
 
-        <div class="technical-card">
-
-            <div class="technical-item">
-                <span class="technical-label">Name</span>
-                <span class="technical-description">
-                    The name of the song
-                </span>
-            </div>
-
-            <div class="technical-item">
-                <span class="technical-label">Author</span>
-                <span class="technical-description">
-                    The song's composer
-                </span>
-            </div>
-
-            <div class="technical-item">
-                <span class="technical-label">BPM</span>
-                <span class="technical-description">
-                    The song's tempo
-                </span>
-            </div>
-
-            <div class="technical-item">
-                <span class="technical-label">Note Pattern</span>
-                <span class="technical-description">
-                    A list whith info for each note. The beat in which they shoud be hit, and the rail in which they spawn
-                </span>
-            </div>
-
-        </div>
+        <p> 
+            Each verse having its related audio, and the list of notes, which have the beat or time in which they should be hit and the path.
+            There is more data in the JSON files which we finally did not use in the game. 
+        </p>
 
         <p>
             The JSON file is parsed by a script and converted into
@@ -404,6 +375,51 @@
             it reaches the hit point at the correct time.
         </p>
 
+        <pre><code>
+{
+	"baseAudioFileName":"",
+	"bpm":60,
+	"offset":0.1,
+	"name":"Vivaldi Winter",
+	"verseList":
+	[
+		{
+			"timeUntilStart":0,
+			"audioFilename" : "VW_0",
+			"noteList":
+			[
+				{
+					"time":-1,
+					"type":0,
+					"path":[0],
+					"duration":-1,
+					"beat":17
+				},
+				{
+					"time":-1,
+					"type":0,
+					"path":[1],
+					"duration":-1,
+					"beat":19
+				},
+                                ...
+			]
+		},  
+                ...
+    ]        
+}
+        </code></pre>
+
+        <p>
+            To play the songs, each JSON file is parsed into a C# data structure called a Sheet, which contains all the necessary information for gameplay.
+        </p>
+
+        <p>
+            When playing a song, the game spanws the notes based on its time to be hit. To do this, it calculated the time it takes for the note to reach the hit point, based on the current note speed and distance.
+            The paths for the notes are defined with two world positions, making it easy to change the path of the notes without having to change the code or the note data.
+            When the player hits a key, the game checks the precission of the hit based on the distance from the hit point to the advancing note. Based on that a different score is given.
+        </p>
+        
     </div>
 
 </section>
