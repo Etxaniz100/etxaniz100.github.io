@@ -12,6 +12,9 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     const dotsContainer =
         carousel.querySelector(".carousel-dots");
 
+    const captions =
+        carousel.querySelectorAll(".carousel-caption");
+
     let currentIndex = 0;
 
     const totalSlides = slides.length;
@@ -62,6 +65,13 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
                 "active",
                 dotIndex === currentIndex
             );
+
+        });
+
+        captions.forEach((caption, captionIndex) => {
+
+            caption.style.display =
+                captionIndex === currentIndex ? "block" : "none";
 
         });
 
