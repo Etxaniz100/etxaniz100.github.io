@@ -13,10 +13,13 @@
     --bg-soft: #f2e9fb;
     --surface: #ffffff;
     --surface-alt: #faf4ff;
+
     --primary: #5b3d7a;
     --primary-dark: #2a1c36;
-    --secondary: #ff8c69;
+    --primary-highlight: rgb(149, 90, 197);
+    --secondary: #f07c58;
     --secondary-soft: #ffe2d7;
+    --secondary-highlight: rgb(255, 164, 104);;
     --text: #2b2432;
     --muted: #62596d;
     --line: rgba(91, 61, 122, 0.12);
