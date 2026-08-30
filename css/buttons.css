@@ -1,0 +1,43 @@
+/* 
+========================================
+              BUTTONS
+======================================== 
+*/
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.6rem;
+    padding: 0.95rem 2rem;
+
+    background: var(--primary);
+    color: var(--white);
+
+    border: none;
+    border-radius: 20px;
+
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+    
+    box-shadow: var(--shadow-soft);
+}
+
+.button:hover {
+    background: var(--secondary);
+}
+
+.button.secondary {
+    background: var(--secondary);
+}
+
+.button.secondary:hover {
+    background: var(--primary);
+}
+
