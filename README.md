@@ -18,6 +18,9 @@
 [] Limit width for project card
 [] Create template for all projects
 [] Separate game projects from other projects
+[] Add "indice" to each project
+[] Put the videos upper
+[] Create a demo reel
 
 ### Loop Escape
 [] Add Loop Escape page
